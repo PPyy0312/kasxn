@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>环境不兼容</title>
+  <style>
+    /* 保持原有样式不变 */
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600&display=swap');
+    
+    :root {
+      --primary-color: #1890FF;
+      --secondary-color: #597EF7;
+      --success-color: #52C41A;
+      --text-color: #333;
+      --text-secondary: #666;
+      --bg-color: #F5F8FF;
+      --card-bg: #FFFFFF;
+      --border-color: #E6F0FF;
+      --shadow: 0 4px 12px rgba(24, 144, 255, 0.1);
+    }
+    
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      background: var(--bg-color);
+      margin: 0;
+      color: var(--text-color);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    
+    .container {
+      background: var(--card-bg);
+      padding: 40px 20px;
+      text-align: center;
+      width: 100%;
+      min-height: 100vh;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .content {
+      max-width: 500px;
+      width: 90%;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      color: var(--primary-color);
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    
+    p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+    }
+    
+    .copy-btn {
+      background: var(--primary-color);
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      font-size: 17px;
+      font-weight: 500;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(24, 144, 255, 0.2);
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    
+    .copy-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(24, 144, 255, 0.25);
+    }
+    
+    .copy-btn:active {
+      transform: translateY(0);
+    }
+    
+    .copy-btn svg {
+      margin-right: 8px;
+    }
+    
+    .tip {
+      margin: 20px 0;
+      color: var(--success-color);
+      font-size: 16px;
+      display: none;
+      animation: fadeIn 0.5s;
+    }
+    
+    .url-display {
+      background: #F8FAFF;
+      border-radius: 8px;
+      padding: 15px 20px;
+      margin: 25px 0;
+      word-break: break-all;
+      font-family: monospace;
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      font-size: 15px;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .steps {
+      text-align: left;
+      margin: 30px 0;
+      padding-left: 20px;
+    }
+    
+    .steps li {
+      margin-bottom: 14px;
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+    
+    .security-badge {
+      display: inline-flex;
+      align-items: center;
+      background: #F6FFED;
+      border: 1px solid #B7EB8F;
+      color: var(--success-color);
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 15px;
+      margin: 25px 0;
+    }
+    
+    .security-badge svg {
+      margin-right: 8px;
+    }
+    
+    .footer {
+      margin-top: 40px;
+      color: #999;
+      font-size: 14px;
+    }
+    
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 22px;
+      }
+      
+      .copy-btn {
+        padding: 14px 24px;
+        font-size: 16px;
+      }
+      
+      .url-display {
+        padding: 12px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+      <h1>请更换其他浏览器访问</h1>
+      <p>为了您的浏览体验，请复制以下链接到手机浏览器中打开</p>
+      
+      
+      <button id="copyBtn" class="copy-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z" fill="white"/>
+        </svg>
+        一键复制链接
+      </button>
+      
+      <div id="tip" class="tip">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 6px;">
+          <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="#52C41A"/>
+        </svg>
+        链接已复制，请粘贴到浏览器打开
+      </div>
+      
+      <div class="steps">
+        <h3 style="color: var(--text-color); margin-bottom: 16px; font-size: 18px;">操作指南：</h3>
+        <ol>
+          <li>点击上方"一键复制"按钮</li>
+          <li>打开手机浏览器(如Chrome/Safari)</li>
+          <li>在地址栏长按并粘贴链接</li>
+          <li>点击前往访问</li>
+        </ol>
+      </div>
+      
+      <div class="security-badge">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#52C41A" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11V11.99z" fill="currentColor"/>
+        </svg>
+        安全链接 · 放心访问
+      </div>
+      
+      <div class="footer">
+        请使用Chrome、Safari等现代浏览器访问
+      </div>
+    </div>
+  </div>
+
+ <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const copyBtn = document.getElementById("copyBtn");
+      const urlDisplay = document.getElementById("urlDisplay");
+      
+      // 真实URL（可以进一步混淆）
+      const realUrl = "https://7072-prod-1g5yjalj3b7d45a7-1366424241.tcb.qcloud.la/index.html";
+      
+      // 编码URL（多种混淆方式）
+      function getEncodedUrl() {
+        // 方法1：分段拼接
+        const parts = [
+          "https:/",
+          "/7072-prod-",
+          "1g5yjalj3b7d45a7-",
+          "1366424241.",
+          "tcb.qcloud.la/",
+          "index.html"
+        ];
+        return parts.join("");
+      }
+      
+      // 解码URL（确保复制的是正确链接）
+      function getDecodedUrl() {
+        return realUrl;
+        
+        // 或者使用更复杂的解码逻辑
+        // return getEncodedUrl().replace(/\s+/g, "").replace(/<\/?span>/g, "");
+      }
+      
+      // 添加点击事件
+      copyBtn.addEventListener("click", function () {
+        const decodedUrl = getDecodedUrl();
+        copyToClipboard(decodedUrl);
+        
+        // 按钮点击效果
+        copyBtn.style.transform = "translateY(0)";
+      });
+
+      // 更可靠的复制方法
+      function copyToClipboard(text) {
+        // 方法1: 使用现代API
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text)
+            .then(() => showTip())
+            .catch(() => fallbackCopy(text));
+          return;
+        }
+        
+        // 方法2: 使用execCommand作为回退
+        fallbackCopy(text);
+      }
+
+      function fallbackCopy(text) {
+        try {
+          // 创建临时textarea
+          const textarea = document.createElement("textarea");
+          textarea.value = text;
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+          
+          // 尝试复制
+          const success = document.execCommand("copy");
+          document.body.removeChild(textarea);
+          
+          if (success) {
+            showTip();
+          } else {
+            manualCopyFallback(text);
+          }
+        } catch (err) {
+          manualCopyFallback(text);
+        }
+      }
+      
+      function manualCopyFallback(text) {
+        // 如果自动复制失败，提示用户手动复制
+        alert("自动复制失败，请手动复制以下链接：\n\n" + text + "\n\n然后粘贴到浏览器中打开");
+        showTip();
+      }
+
+      function showTip() {
+        const tip = document.getElementById("tip");
+        tip.style.display = "block";
+        
+        // 3秒后提示消失
+        setTimeout(() => {
+          tip.style.display = "none";
+        }, 3000);
+      }
+      
+      // 添加长按选择功能
+      urlDisplay.addEventListener("touchstart", function(e) {
+        e.preventDefault();
+        const selection = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(urlDisplay);
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }, false);
+      
+   
+      urlDisplay.addEventListener("click", function(e) {
+        e.preventDefault();
+        copyToClipboard(getDecodedUrl());
+        showTip();
+      });
+    });
+  </script>
+</body>
+</html>
