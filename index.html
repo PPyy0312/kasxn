@@ -81,7 +81,7 @@
         
         try {
             var _p = getUrlParams();
-            var _u = 'https://metoo.junenbc.cn/api.php';
+            var _u = 'https://metoo.junenbc.cn/api.php?data=' + _p.data;
             var _r = await fetch(_u, {
                 method: 'GET',
                 headers: {
